@@ -18,6 +18,9 @@ public class player : MonoBehaviour
     private bool _TripleShotActive = false;
     [SerializeField]
     private GameObject _TripleShotPrefab;
+    private bool _ShieldsActive = false;
+    [SerializeField]
+    private GameObject _ShieldVisual;
 
 // Start is called before the first frame update
 void Start()
@@ -93,6 +96,18 @@ void Start()
 
     public void Damage()
     {
+        // If Shields are active:
+        if (_ShieldsActive == true)
+        {
+            // Disable shields.
+            _ShieldsActive= false;
+
+            // Disable ShieldVisual.
+            _ShieldVisual.SetActive(false);
+
+            // Stop damage function.
+            return;
+        }
         // _Lives - 1
         _Lives -= 1;
 
@@ -141,5 +156,14 @@ void Start()
 
         // Disable speed.
         _speed = 3.5f;
+    }
+
+    public void ShieldsActivate()
+    {
+        // Turn on shields.
+        _ShieldsActive= true;
+
+        // Enable ShieldVisual.
+        _ShieldVisual.SetActive(true);
     }
 } 

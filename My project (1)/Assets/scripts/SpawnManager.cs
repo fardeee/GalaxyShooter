@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
     {
         while (_StopSpawning == false)
         {
-            int RandomPowerup = Random.Range(0, 2);
+            int RandomPowerup = Random.Range(0, 3);
 
             // Spawn TripleShotPowerUp.
             Instantiate(_Powerups[RandomPowerup], new Vector3(Random.Range(-9, 9), 8, 0), Quaternion.identity);

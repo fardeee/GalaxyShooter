@@ -64,6 +64,17 @@ public class Powerup : MonoBehaviour
 
                         // Finish.
                         break;
+                    
+                    // If Powerup is ShieldPowerup:
+                    case 2:
+                        // Activate shields.
+                        player.ShieldsActivate();
+
+                        // Destroy this ShieldPowerup.
+                        Destroy(this.gameObject);
+
+                        // Finish.
+                        break;
 
                     // If there is no Powerup:
                     // Let the console know.
