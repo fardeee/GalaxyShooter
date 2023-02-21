@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class player : MonoBehaviour
     private bool _ShieldsActive = false;
     [SerializeField]
     private GameObject _ShieldVisual;
+    private int _score = 0;
+    private UiManager _UiManager;
 
 // Start is called before the first frame update
 void Start()
@@ -31,11 +34,19 @@ void Start()
         // Find the SpawnManager.
         _SpawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 
+        // Find the UiManager.
+        _UiManager = GameObject.Find("Canvas").GetComponent<UiManager>();
+
         // If Spawn Manager is null:
         // Error
         if (_SpawnManager == null)
         {
             Debug.LogError("The SpawnManager is null.");
+        }
+
+        if (_UiManager == null)
+        {
+            Debug.LogError("The UiManager is null.");
         }
     }
 
@@ -165,5 +176,12 @@ void Start()
 
         // Enable ShieldVisual.
         _ShieldVisual.SetActive(true);
+    }
+
+    public void AddScore(int points)
+    {
+        // Add 100 to score.
+        _score += points;
+        _UiManager.UpdateScore(_score);
     }
 } 

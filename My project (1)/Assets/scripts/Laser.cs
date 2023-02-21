@@ -15,7 +15,6 @@ public class Laser : MonoBehaviour
         transform.Translate(Vector3.up * _speed * Time.deltaTime);
 
         // If laser y position is greater than 8:
-        //Destroy laser.
         if (transform.position.y >= 8)
         {
             // If Laser has a parent:

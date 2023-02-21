@@ -7,6 +7,13 @@ public class Enemy : MonoBehaviour
     // Behavior variables.
     [SerializeField]
     private int _speed = 4;
+    private player _player;
+
+    void Start()
+    {
+        // Get player component.
+        _player = GameObject.Find("player").GetComponent<player>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -49,12 +56,15 @@ public class Enemy : MonoBehaviour
         }
         
         // If other is Laser:
-        // Destroy Laser &
-        // Destroy Enemy.
         if (other.tag == "Laser")
-        { 
+        {
             // Destroy Enemy.
             Destroy(this.gameObject);
+
+            if (_player != null)
+            {
+                _player.AddScore(Random.Range(80, 160));
+            }
 
             //Destroy Laser
             Destroy(other.gameObject);
