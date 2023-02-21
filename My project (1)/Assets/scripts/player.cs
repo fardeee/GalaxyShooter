@@ -122,6 +122,9 @@ void Start()
         // _Lives - 1
         _Lives -= 1;
 
+        // Update lives.
+        _UiManager.UpdateLives(_Lives);
+
         // If Lives is == 0:
         if (_Lives == 0)
         {
