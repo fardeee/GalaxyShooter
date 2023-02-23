@@ -12,6 +12,8 @@ public class UiManager : MonoBehaviour
     private Sprite[] _LiveSprites;
     [SerializeField]
     private Image _LivesImg;
+    [SerializeField]
+    private Text _GameOverText;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +32,34 @@ public class UiManager : MonoBehaviour
     {
         // Update lives.
         _LivesImg.sprite = _LiveSprites[CurrentLives];
+
+        // If CurrentLives is 0:
+        if (CurrentLives == 0)
+        {
+            // Turn on Gameover text.
+            _GameOverText.gameObject.SetActive(true);
+
+            // Start gameover text flicker.
+            StartCoroutine(GameoverFlickerRoutine());
+        }
+    }
+
+    IEnumerator GameoverFlickerRoutine()
+    {
+        // Infinite loop:
+        while (true)
+        {
+            // Set Gameover Text to game over.
+            _GameOverText.text = "GAME OVER";
+
+            // Wait for 0.5 seconds.
+            yield return new WaitForSeconds(0.5f);
+
+            // Set game over text to nothing.
+            _GameOverText.text = "";
+
+            // Wait 0.5 seconds.
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }
